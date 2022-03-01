@@ -1,6 +1,5 @@
 language: php
 dist: bionic
-sudo: false
 
 notifications:
   email:
@@ -13,27 +12,23 @@ git:
 services:
   - mysql
 
-php:
-  - 7.2
-  - 7.3
-  - 7.4
-  - 8.1
-
 env:
   global:
     - WP_VERSION=latest
     - CUSTOM_CONSTANTS=0
     - PHPUNIT_VERSION=7.5.0
-  jobs:
     - WP_MULTISITE=0
-    - WP_MULTISITE=1
 
-matrix:
+jobs:
   include:
+    - php: 7.2
+      env: WP_MULTISITE=1
     - php: 7.3
-      env: CUSTOM_CONSTANTS=1
+      env: WP_MULTISITE=1
+    - php: 7.4
+      env: WP_MULTISITE=1
     - php: 8.1
-      env: PHPUNIT_VERSION=9.3
+      env: PHPUNIT_VERSION=7.5.0
 
 install:
     # flags to pass to install
