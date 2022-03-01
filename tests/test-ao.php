@@ -105,7 +105,7 @@ class AOTest extends WP_UnitTestcase
     /**
      * Runs before each test method.
      */
-    public function setUp()
+    public function setUp() : void
     {
         $this->ao = new autoptimizeMain( AUTOPTIMIZE_PLUGIN_VERSION, AUTOPTIMIZE_PLUGIN_FILE );
 
@@ -115,7 +115,7 @@ class AOTest extends WP_UnitTestcase
     /**
      * Runs after each test method.
      */
-    public function tearDown()
+    public function tearDown() : void
     {
         // Making sure certain filters are removed after each test to ensure isolation.
         $filter_tags = array(
