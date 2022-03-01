@@ -20,14 +20,18 @@ php:
   - 8.1
 
 env:
-  - WP_VERSION=latest WP_MULTISITE=0 CUSTOM_CONSTANTS=0 PHPUNIT_VERSION=7.5.0
+  global:
+    - WP_VERSION=latest
+    - CUSTOM_CONSTANTS=0
+    - PHPUNIT_VERSION=7.5.0
+  jobs:
+    - WP_MULTISITE=0
+    - WP_MULTISITE=1
 
 matrix:
   include:
     - php: 7.3
-      env: WP_VERSION=latest WP_MULTISITE=1 CUSTOM_CONSTANTS=1
-    - php: 7.3
-      env: WP_VERSION=latest WP_MULTISITE=0 CUSTOM_CONSTANTS=1
+      env: CUSTOM_CONSTANTS=1
     - php: 8.1
       env: PHPUNIT_VERSION=9.3
 
