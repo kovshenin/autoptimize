@@ -17,18 +17,17 @@ env:
     - WP_VERSION=latest
     - CUSTOM_CONSTANTS=0
     - PHPUNIT_VERSION=7.5.0
+  jobs:
     - WP_MULTISITE=0
+    - WP_MULTISITE=1
 
 jobs:
   include:
     - php: 7.2
-      env: WP_MULTISITE=1
     - php: 7.3
-      env: WP_MULTISITE=1
     - php: 7.4
-      env: WP_MULTISITE=1
     - php: 8.1
-      env: PHPUNIT_VERSION=7.5.0
+      env: PHPUNIT_VERSION=9.3
 
 install:
     # flags to pass to install
