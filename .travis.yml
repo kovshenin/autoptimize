@@ -29,8 +29,8 @@ env:
 
 jobs:
   include:
-    - php: 8.1
-      env: PHPUNIT_VERSION=7.5.0
+    - php: 8.1.0
+      env: PHPUNIT_VERSION=9.3
 
 install:
     # flags to pass to install
