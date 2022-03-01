@@ -12,29 +12,32 @@ git:
 services:
   - mysql
 
+php:
+  - 7.2
+  - 7.3
+  - 7.4
+  - 8.1
+
 env:
   global:
     - WP_VERSION=latest
-    - CUSTOM_CONSTANTS=0
-    - PHPUNIT_VERSION=7.5.0
   jobs:
+    - CUSTOM_CONSTANTS=0
+    - CUSTOM_CONSTANTS=1
     - WP_MULTISITE=0
     - WP_MULTISITE=1
 
 jobs:
   include:
-    - php: 7.2
-    - php: 7.3
-    - php: 7.4
     - php: 8.1
-      env: PHPUNIT_VERSION=9.3
+      env: PHPUNIT_VERSION=7.5.0
 
 install:
     # flags to pass to install
     - flags="--ansi --prefer-dist --no-interaction --optimize-autoloader --no-progress"
     # install dependencies using system provided composer binary
     - composer install $flags
-    - composer require --no-interaction --dev phpunit/phpunit:$PHPUNIT_VERSION
+    - composer require --no-interaction --dev phpunit/phpunit:${PHPUNIT_VERSION:-7.5.0}
 
 before_script:
   # install wp tests infra
